@@ -3,19 +3,19 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const compression = require("compression");
-const helmet = require("helmet");
-const RateLimit = require("express-rate-limit");
+const compression = require('compression');
+const helmet = require('helmet');
+const RateLimit = require('express-rate-limit');
 
+const mongoose = require('mongoose');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog');
 
 // Set up mongoose connection
-const mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
-const dev_db_url = "mongodb://127.0.0.1:27017/library_db";
-const mongoDB = process.env.MONGODB_URI || dev_db_url;
+mongoose.set('strictQuery', false);
+const DevDBUrl = 'mongodb://127.0.0.1:27017/library_db';
+const mongoDB = process.env.MONGODB_URI || DevDBUrl;
 
 const app = express();
 
@@ -39,15 +39,15 @@ app.use(compression()); // Compress all routes
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+      'script-src': ["'self'", 'code.jquery.com', 'cdn.jsdelivr.net'],
     },
   }),
 );
 
-// limits all requests to 20 per minute. 
+// limits all requests to 20 per minute.
 const limiter = RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 20, 
+  max: 20,
 });
 // Apply rate limiter to all requests
 app.use(limiter);
