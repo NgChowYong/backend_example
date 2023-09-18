@@ -50,6 +50,8 @@ note that we are using Express nodejs as our environment
 	- 'npm install express-validator':validation and sanitization of our form data
 - swagger UI?
 - install compression, helmet, express-rate-limit for deploy use
+- jtest for unit test used
+	- 'npm install --save-dev jest'
 
 ## File structure
 - folders are created by auto generator as reference
@@ -78,6 +80,7 @@ note that inital version will be creating some basic js code or common module th
 - modify CRUD functions
 - linter = ESLint, run when modify the code
 - swagger ui for schema alignment
+
 
 ## Testing
 - `npm run serverstart`
