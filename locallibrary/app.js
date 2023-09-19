@@ -6,8 +6,10 @@ const logger = require('morgan');
 const compression = require('compression');
 const helmet = require('helmet');
 const RateLimit = require('express-rate-limit');
-
+const swaggerUi = require('swagger-ui-express');
 const mongoose = require('mongoose');
+
+const swaggerDocument = require('./swagger_output.json');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog');
@@ -16,7 +18,6 @@ const catalogRouter = require('./routes/catalog');
 mongoose.set('strictQuery', false);
 const DevDBUrl = 'mongodb://127.0.0.1:27017/library_db';
 const mongoDB = process.env.MONGODB_URI || DevDBUrl;
-
 const app = express();
 
 main().catch((err) => console.log(err));
@@ -28,6 +29,7 @@ async function main() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -48,10 +48,12 @@ note that we are using Express nodejs as our environment
 	- 'npm install luxon'
 - install express-validator
 	- 'npm install express-validator':validation and sanitization of our form data
-- swagger UI?
 - install compression, helmet, express-rate-limit for deploy use
 - jtest for unit test used
 	- 'npm install --save-dev jest'
+- install swagger for front back end integration
+	- 'npm install swagger-ui-express'
+	- 'npm install swagger-autogen'
 
 ## File structure
 - folders are created by auto generator as reference
@@ -81,10 +83,13 @@ note that inital version will be creating some basic js code or common module th
 - linter = ESLint, run when modify the code
 - swagger ui for schema alignment
 
+## generate swagger UI 
+- 'npm run swagger-autogen'
+- it will serve as a contact for frontend backend integration
 
 ## Testing
-- `npm run serverstart`
-- not yet ready
+- 'npm run serverstart'
+- 'npm run test'
 
 ## Deploy
 - IaaS vs PaaS, PaaS dont need to worry servers, load balancers etc.
